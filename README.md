@@ -44,4 +44,29 @@ This site is a showcase of my skills, projects, and journey as an aspiring **Mac
 ---
 
 ## 📂 Folder Structure
+MyPortfolio/
+├── index.html
+├── styles.css
+├── script.js
+├── assets/
+│ ├── images, icons, certificates
+└── README.md
+
+---
+
+## 📜 License
+
+This project is for educational and personal use.  
+Feel free to fork or use parts of it with attribution. 😊
+
+---
+
+## 🙋‍♂️ About Me
+
+**Abhay Agarwal**  
+B.Tech Electrical Engineering, MNNIT Allahabad  
+Aspiring AI/ML Engineer | Data Science Enthusiast  
+📬 [officialabhay030405@gmail.com](mailto:officialabhay030405@gmail.com)
+
+> Thanks for visiting my portfolio — let’s build the future with data! 🚀
 
