@@ -596,4 +596,85 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.model-metrics').forEach(metrics => {
         metricsObserver.observe(metrics);
     });
+});
+
+// Initialize skills section animations
+function initializeSkills() {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Animate progress bars
+                entry.target.querySelectorAll('.progress').forEach(progress => {
+                    const width = progress.style.width;
+                    progress.style.width = '0';
+                    setTimeout(() => {
+                        progress.style.width = width;
+                    }, 100);
+                });
+
+                // Animate metric numbers
+                entry.target.querySelectorAll('.metric-number').forEach(number => {
+                    const value = number.textContent;
+                    number.textContent = '0';
+                    animateNumber(number, value);
+                });
+
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.2
+    });
+
+    // Observe expertise cards
+    document.querySelectorAll('.expertise-card').forEach(card => {
+        observer.observe(card);
+    });
+
+    // Observe metrics section
+    const metricsSection = document.querySelector('.achievement-metrics');
+    if (metricsSection) {
+        observer.observe(metricsSection);
+    }
+}
+
+// Animate number counting
+function animateNumber(element, target) {
+    const targetNum = parseInt(target);
+    let currentNum = 0;
+    const duration = 2000; // 2 seconds
+    const stepTime = 50; // Update every 50ms
+    const steps = duration / stepTime;
+    const increment = targetNum / steps;
+
+    const timer = setInterval(() => {
+        currentNum += increment;
+        if (currentNum >= targetNum) {
+            element.textContent = target;
+            clearInterval(timer);
+        } else {
+            element.textContent = Math.floor(currentNum) + '+';
+        }
+    }, stepTime);
+}
+
+// Add hover effects for expertise cards
+function initializeHoverEffects() {
+    document.querySelectorAll('.expertise-card').forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            card.style.transform = 'translateY(-10px)';
+            card.style.boxShadow = '0 10px 30px rgba(0, 255, 255, 0.1)';
+        });
+
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'translateY(0)';
+            card.style.boxShadow = 'none';
+        });
+    });
+}
+
+// Initialize when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    initializeSkills();
+    initializeHoverEffects();
 }); 
