@@ -64,7 +64,7 @@ I'm also seeking internship opportunities where I can apply my learning and cont
 Feel free to connect with me:
 
 - 💼 [LinkedIn](https://www.linkedin.com/in/abhay030405/)
-- 📧 Email: abhayagarwal030405@gmail.com
+- 📧 Email: officialabhay030405@gmail.com
 - 🌐 [Live Portfolio](https://abhay030405.github.io/MyPortfolio/)
 
 ---
