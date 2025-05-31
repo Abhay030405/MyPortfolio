@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abhay Agarwal — AI/ML Enthusiast & Data Science Explorer</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="myimage.webp">
+    <link rel="icon" type="image/png" sizes="16x16" href="myimage.webp">
+    <link rel="apple-touch-icon" sizes="180x180" href="myimage.webp">
+    <link rel="manifest" href="myimage.webp">
+    <link rel="mask-icon" href="myimage.webp" color="#3498DB">
+    <meta name="theme-color" content="#0F2027">
+    
+    <style>
+        /* Initial loading styles */
+        html, body {
+            margin: 0;
+            padding: 0;
+            background: #0F2027; /* Match your dark background */
+            /* Disable text selection */
+            /* user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none; */
+        }
+        
+        /* Hide content initially */
+        html {
+            visibility: hidden;
+            background: #0F2027;
+        }
+
+        /* Loader initial state */
+        .loader-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: #0F2027;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            opacity: 0;
+            animation: fadeIn 0.3s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        /* Ensure content is hidden initially */
+        .content-wrapper {
+            opacity: 0;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <!-- GSAP Animation Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <!-- Lottie Animation -->
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <!-- Particles.js -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <!-- Three.js for 3D effects -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+ <body > <!-- oncontextmenu="return false;"  for disable right click -->
+    <div class="loader-wrapper">
+        <div class="loader-background"></div>
+        <div class="loader">
+            <div class="loader-cube">
+                <div class="loader-face">ML</div>
+                <div class="loader-face">AI</div>
+                <div class="loader-face">DS</div>
+                <div class="loader-face">ML</div>
+                <div class="loader-face">DS</div>
+                <div class="loader-face">AI</div>
+            </div>
+        </div>
+        <div class="loader-text">Opening Portfolio...</div>
+        <div class="loader-progress">
+            <div class="progress-bar"></div>
+        </div>
+        <div class="loader-particles">
+            <div class="particle" style="--tx: 100px; --ty: -100px;"></div>
+            <div class="particle" style="--tx: -150px; --ty: -80px;"></div>
+            <div class="particle" style="--tx: 80px; --ty: 120px;"></div>
+            <div class="particle" style="--tx: -120px; --ty: 100px;"></div>
+            <div class="particle" style="--tx: 140px; --ty: -60px;"></div>
+        </div>
+    </div>
+    <div class="page-transition"></div>
+
+    <div class="content-wrapper">
+        <nav class="navbar">
+            <div class="nav-logo">
+                <span class="logo-text">Abhay Agarwal</span>
+                <div class="logo-dot"></div>
+            </div>
+            <div class="nav-links">
+                <a href="#about" class="nav-link">
+                    <span class="nav-text">About</span>
+                </a>
+                <a href="#work" class="nav-link">
+                    <span class="nav-text">Projects</span>
+                </a>
+                <a href="#story" class="nav-link">
+                    <span class="nav-text">My Journey</span>
+                </a>
+                <a href="#skills" class="nav-link">
+                    <span class="nav-text">Skills</span>
+                </a>
+                <a href="#chat" class="nav-link">
+                    <span class="nav-text">Contact</span>
+                </a>
+                <!-- <button class="start-project-btn">
+                    <span class="btn-text">Hire Me</span>
+                    <span class="btn-icon">→</span>
+                </button> -->
+            </div>
+            <div class="menu-btn">
+                <span class="menu-icon"></span>
+            </div>
+        </nav>
+
+        <header class="hero">
+            <div class="hero-shapes">
+                <div class="shape shape-1"></div>
+                <div class="shape shape-2"></div>
+                <div class="shape shape-3"></div>
+                <div class="shape shape-4"></div>
+                <div class="shape shape-5"></div>
+            </div>
+            <div class="hero-particles" id="particles-js"></div>
+            <div class="hero-content">
+                <div class="hero-intro">
+                    <span class="hero-welcome">AI & Data Science </span>
+                    <!-- <div class="hero-name">
+                        <span class="name-text">Abhay Agarwal</span>
+                        <div class="name-underline"></div>
+                    </div> -->
+                    <h1 class="hero-title">
+                        <span class="title-static">Transforming Data with</span>
+                        <span class="animated-text"></span>
+                    </h1>
+                    <h2 class="hero-subtitle">
+                        <span class="separator">Aspiring </span>
+                        <span class="role">Machine Learning Engineer</span>
+                        <span class="separator">&</span>
+                        <span class="role">Data Scientist</span>
+                    </h2>
+                    <p class="hero-description">
+                        Passionate about leveraging AI and machine learning to solve complex problems and extract meaningful insights from data
+                    </p>
+                </div>
+                <div class="hero-buttons">
+                    <a href="#work" class="hero-btn primary">
+                        <span class="btn-text">View Projects</span>
+                        <i class="fas fa-project-diagram"></i>
+                    </a>
+                    <a href="#chat" class="hero-btn secondary">
+                        <span class="btn-text">Hire Me</span>
+                        <i class="fas fa-handshake"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="hero-background">
+                <div class="gradient-sphere"></div>
+                <div class="floating-elements">
+                    <div class="tech-icon" data-speed="2">
+                        <i class="fab fa-python"></i>
+                    </div>
+                    <div class="tech-icon" data-speed="1.5">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <div class="tech-icon" data-speed="2.5">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <div class="tech-icon" data-speed="1.8">
+                        <i class="fas fa-chart-network"></i>
+                    </div>
+                    <div class="tech-icon" data-speed="2.2">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="tech-icon" data-speed="1.7">
+                        <i class="fas fa-code-branch"></i>
+                    </div>
+                </div>
+                <div class="data-visualization">
+                    <svg class="network-graph" viewBox="0 0 200 200">
+                        <!-- Neural network visualization -->
+                        <g class="nodes"></g>
+                        <g class="links"></g>
+                    </svg>
+                </div>
+            </div>
+        </header>
+
+        <section id="about" class="about-section">
+            <div class="about-container">
+                <div class="about-content">
+                    <div class="profile-section">
+                        <div class="profile-photo-container">
+                            <img src="profile.png" alt="Abhay Agarwal" class="profile-photo">
+                            <!-- <div class="badge">
+                                <i class="fas fa-bullseye"></i>
+                                <span>ML Engineer</span>
+                            </div> -->
+                        </div>
+                        <div class="profile-links">
+                            <a href="https://github.com/Abhay030405" target="_blank" class="profile-link">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/in/abhay-agarwal-8563352b1/" target="_blank" class="profile-link">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="/blank" target="_blank" class="profile-link">
+                                <i class="fas fa-graduation-cap"></i>
+                            </a>
+                            <a href="https://kaggle.com/abhayondata" target="_blank" class="profile-link">
+                                <i class="fab fa-kaggle"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="about-text-side">
+                        <div class="section-header">
+                            <span class="section-subtitle">ABOUT ME</span>
+                            <h2>AI & Machine Learning Professional</h2>
+                        </div>
+                        <div class="about-description">
+                            <div class="description-block">
+                                <h3>Background</h3>
+                                <p>As an aspiring Machine Learning Engineer and Data Scientist, I'm deeply fascinated by the potential of AI to transform our world. My journey began with Python programming and has evolved into a passionate exploration of neural networks, deep learning, and data analysis.</p>
+                            </div>
+                            <div class="description-block">
+                                <h3>Current Focus</h3>
+                                <p>Currently focused on developing expertise in machine learning algorithms, data visualization, and predictive modeling. I love tackling complex problems and turning data into actionable insights.</p>
+                            </div>
+                            <div class="expertise-areas">
+                                <div class="expertise-item">
+                                    <div class="expertise-icon">
+                                        <i class="fas fa-brain"></i>
+                                    </div>
+                                    <div class="expertise-text">
+                                        <h4>Deep Learning</h4>
+                                        <p>Neural Networks & Computer Vision</p>
+                                    </div>
+                                </div>
+                                <div class="expertise-item">
+                                    <div class="expertise-icon">
+                                        <i class="fas fa-robot"></i>
+                                    </div>
+                                    <div class="expertise-text">
+                                        <h4>Machine Learning</h4>
+                                        <p>Predictive Analytics & NLP</p>
+                                    </div>
+                                </div>
+                                <div class="expertise-item">
+                                    <div class="expertise-icon">
+                                        <i class="fas fa-database"></i>
+                                    </div>
+                                    <div class="expertise-text">
+                                        <h4>Data Science</h4>
+                                        <p>Statistical Analysis & Visualization</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="work" class="projects-section">
+            <div class="projects-container">
+                <div class="projects-header">
+                    <h2 class="projects-title">Data Science & Machine Learning Projects</h2>
+                    <p class="projects-subtitle">Exploring data, building models, and creating insights</p>
+                </div>
+
+                <div class="projects-grid">
+                    <!-- Customer Churn Project -->
+                    <div class="project-card">
+                        <div class="project-content">
+                            <div class="project-header">
+                                <h3 class="project-title">Customer Churn Prediction</h3>
+                                <i class="project-icon fas fa-brain"></i>
+                            </div>
+                            <p class="project-description">
+                                Developed a machine learning model to predict customer churn with 94% accuracy using advanced feature engineering and ensemble methods.
+                            </p>
+                            
+                            <div class="project-tech-stack">
+                                <span class="tech-item">Python</span>
+                                <span class="tech-item">scikit-learn</span>
+                                <span class="tech-item">XGBoost</span>
+                                <span class="tech-item">Pandas</span>
+                            </div>
+                            
+                            <div class="project-tags">
+                                <span class="project-tag">
+                                    <i class="fas fa-robot"></i>
+                                    #ML
+                                </span>
+                                <span class="project-tag">
+                                    <i class="fas fa-chart-line"></i>
+                                    #Prediction
+                                </span>
+                            </div>
+
+                            <!-- Model Performance Metrics -->
+                            <div class="model-metrics">
+                                <div class="metric-box">
+                                    <i class="metric-icon fas fa-bullseye"></i>
+                                    <div class="metric-name">Accuracy</div>
+                                    <div class="metric-score">94.2%</div>
+                                    <div class="metric-change positive">
+                                        <i class="fas fa-arrow-up"></i>
+                                        2.5%
+                                    </div>
+                                </div>
+                                <div class="metric-box">
+                                    <i class="metric-icon fas fa-check-circle"></i>
+                                    <div class="metric-name">F1 Score</div>
+                                    <div class="metric-score">0.92</div>
+                                    <div class="metric-change positive">
+                                        <i class="fas fa-arrow-up"></i>
+                                        0.03
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Interactive Chart -->
+                            <div class="chart-container">
+                                <div class="chart-header">
+                                    <h4 class="chart-title">
+                                        <i class="fas fa-chart-bar"></i>
+                                        Model Performance Comparison
+                                    </h4>
+                                    <div class="chart-controls">
+                                        <button class="chart-control-btn active" data-chart="modelComparison" data-metric="accuracy">Accuracy</button>
+                                        <button class="chart-control-btn" data-chart="modelComparison" data-metric="f1">F1 Score</button>
+                                    </div>
+                                </div>
+                                <div class="chart-wrapper">
+                                    <canvas id="modelComparisonChart"></canvas>
+                                </div>
+                            </div>
+
+                            <div class="project-links">
+                                <a href="#" class="project-link primary">
+                                    <i class="fas fa-play"></i>
+                                    Live Demo
+                                </a>
+                                <a href="#" class="project-link secondary">
+                                    <i class="fab fa-github"></i>
+                                    View Code
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Image Classification Project -->
+                    <div class="project-card">
+                        <div class="project-content">
+                            <div class="project-header">
+                                <h3 class="project-title">Image Classification AI</h3>
+                                <i class="project-icon fas fa-camera"></i>
+                            </div>
+                            <p class="project-description">
+                                Developed a deep learning model for image classification achieving 96% accuracy on test data. Implemented transfer learning using ResNet50.
+                            </p>
+                            
+                            <div class="project-tech-stack">
+                                <span class="tech-item">TensorFlow</span>
+                                <span class="tech-item">Keras</span>
+                                <span class="tech-item">OpenCV</span>
+                                <span class="tech-item">ResNet50</span>
+                            </div>
+                            
+                            <div class="project-tags">
+                                <span class="project-tag">
+                                    <i class="fas fa-camera"></i>
+                                    #ComputerVision
+                                </span>
+                                <span class="project-tag">
+                                    <i class="fas fa-brain"></i>
+                                    #DeepLearning
+                                </span>
+                            </div>
+
+                            <!-- Model Performance Metrics -->
+                            <div class="model-metrics">
+                                <div class="metric-box">
+                                    <i class="metric-icon fas fa-bullseye"></i>
+                                    <div class="metric-name">Accuracy</div>
+                                    <div class="metric-score">96.2%</div>
+                                    <div class="metric-change positive">
+                                        <i class="fas fa-arrow-up"></i>
+                                        3.5%
+                                    </div>
+                                </div>
+                                <div class="metric-box">
+                                    <i class="metric-icon fas fa-clock"></i>
+                                    <div class="metric-name">Inference Time</div>
+                                    <div class="metric-score">45ms</div>
+                                    <div class="metric-change positive">
+                                        <i class="fas fa-arrow-down"></i>
+                                        12ms
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Interactive Chart -->
+                            <div class="chart-container">
+                                <div class="chart-header">
+                                    <h4 class="chart-title">
+                                        <i class="fas fa-chart-line"></i>
+                                        Training Progress
+                                    </h4>
+                                    <div class="chart-controls">
+                                        <button class="chart-control-btn active" data-chart="imageClassification" data-metric="accuracy">Accuracy</button>
+                                        <button class="chart-control-btn" data-chart="imageClassification" data-metric="loss">Loss</button>
+                                    </div>
+                                </div>
+                                <div class="chart-wrapper">
+                                    <canvas id="imageClassificationChart"></canvas>
+                                </div>
+                            </div>
+
+                            <div class="project-links">
+                                <a href="#" class="project-link primary">
+                                    <i class="fas fa-play"></i>
+                                    Live Demo
+                                </a>
+                                <a href="#" class="project-link secondary">
+                                    <i class="fab fa-github"></i>
+                                    View Code
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Stock Price Prediction Project -->
+                    <div class="project-card">
+                        <div class="project-content">
+                            <div class="project-header">
+                                <h3 class="project-title">Stock Price Predictor</h3>
+                                <i class="project-icon fas fa-chart-line"></i>
+                            </div>
+                            <p class="project-description">
+                                Built an LSTM-based deep learning model for stock price prediction with multi-variate time series analysis and technical indicators.
+                            </p>
+                            
+                            <div class="project-tech-stack">
+                                <span class="tech-item">PyTorch</span>
+                                <span class="tech-item">LSTM</span>
+                                <span class="tech-item">Pandas</span>
+                                <span class="tech-item">TA-Lib</span>
+                            </div>
+                            
+                            <div class="project-tags">
+                                <span class="project-tag">
+                                    <i class="fas fa-chart-line"></i>
+                                    #TimeSeries
+                                </span>
+                                <span class="project-tag">
+                                    <i class="fas fa-dollar-sign"></i>
+                                    #Finance
+                                </span>
+                            </div>
+
+                            <!-- Model Performance Metrics -->
+                            <div class="model-metrics">
+                                <div class="metric-box">
+                                    <i class="metric-icon fas fa-chart-bar"></i>
+                                    <div class="metric-name">RMSE</div>
+                                    <div class="metric-score">0.0234</div>
+                                    <div class="metric-change positive">
+                                        <i class="fas fa-arrow-down"></i>
+                                        0.0056
+                                    </div>
+                                </div>
+                                <div class="metric-box">
+                                    <i class="metric-icon fas fa-percentage"></i>
+                                    <div class="metric-name">R² Score</div>
+                                    <div class="metric-score">0.89</div>
+                                    <div class="metric-change positive">
+                                        <i class="fas fa-arrow-up"></i>
+                                        0.05
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Interactive Chart -->
+                            <div class="chart-container">
+                                <div class="chart-header">
+                                    <h4 class="chart-title">
+                                        <i class="fas fa-chart-line"></i>
+                                        Prediction vs Actual
+                                    </h4>
+                                    <div class="chart-controls">
+                                        <button class="chart-control-btn active" data-chart="stockPredictor" data-metric="1week">1 Week</button>
+                                        <button class="chart-control-btn" data-chart="stockPredictor" data-metric="1month">1 Month</button>
+                                    </div>
+                                </div>
+                                <div class="chart-wrapper">
+                                    <canvas id="stockPredictorChart"></canvas>
+                                </div>
+                            </div>
+
+                            <div class="project-links">
+                                <a href="#" class="project-link primary">
+                                    <i class="fas fa-play"></i>
+                                    Live Demo
+                                </a>
+                                <a href="#" class="project-link secondary">
+                                    <i class="fab fa-github"></i>
+                                    View Code
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="story" class="journey-section">
+            <div class="section-header">
+                <span class="section-subtitle">MY JOURNEY</span>
+                <h2>The Path That Led Me Here</h2>
+            </div>
+            <div class="journey-grid">
+                <div class="journey-card" data-index="1">
+                    <div class="journey-connector"></div>
+                    <div class="journey-content">
+                        <div class="journey-icon">🎓</div>
+                        <span class="date">2024 - 2028</span>
+                        <h3>Bachelor of Technology</h3>
+                        <p>Started my academic journey at MNNIT Allahabad,
+                           where I discovered my passion for 
+                           technology, data, and intelligent systems.   
+                        </p>
+                        <div class="journey-tags">
+                            <span class="journey-tag">B.Tech</span>
+                            <span class="journey-tag">MNNIT</span>
+                            <span class="journey-tag">AI/ML</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="journey-card" data-index="2">
+                    <div class="journey-connector"></div>
+                    <div class="journey-content">
+                        <div class="journey-icon">💡</div>
+                        <span class="date">2024</span>
+                        <h3>First Steps in Tech</h3>
+                        <p>Started with Python programming and discovered my passion for machine learning.</p>
+                        <div class="journey-tags">
+                            <span class="journey-tag">Python</span>
+                            <span class="journey-tag">Web Dev</span>
+                            <span class="journey-tag">Learning</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="journey-card" data-index="3">
+                    <div class="journey-connector"></div>
+                    <div class="journey-content">
+                        <div class="journey-icon">🤖</div>
+                        <span class="date">2025</span>
+                        <h3>Deep Dive into AI</h3>
+                        <p>Immersed myself in machine learning and AI. Started working on real-world ML projects.</p>
+                        <div class="journey-tags">
+                            <span class="journey-tag">Machine Learning</span>
+                            <span class="journey-tag">Neural Networks</span>
+                            <span class="journey-tag">AI</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="journey-card" data-index="4">
+                    <div class="journey-connector"></div>
+                    <div class="journey-content">
+                        <div class="journey-icon">🚀</div>
+                        <span class="date">2026</span>
+                        <h3>Current Focus</h3>
+                        <p>Working on cutting-edge ML projects while exploring advanced concepts in AI.</p>
+                        <div class="journey-tags">
+                            <span class="journey-tag">Innovation</span>
+                            <span class="journey-tag">Research</span>
+                            <span class="journey-tag">Growth</span>
+                        </div>
+                    </div>
+                </div>
+                
+
+                <div class="journey-card" data-index="5">
+                    <div class="journey-connector"></div>
+                    <div class="journey-content">
+                        <div class="journey-icon">📱</div>
+                        <span class="date">2026</span>
+                        <h3>Full Stack Development</h3>
+                        <p>Expanded skills into full-stack development while maintaining AI/ML focus.</p>
+                        <div class="journey-tags">
+                            <span class="journey-tag">Full Stack</span>
+                            <span class="journey-tag">React</span>
+                            <span class="journey-tag">Spring Boot</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="journey-card" data-index="6">
+                    <div class="journey-connector"></div>
+                    <div class="journey-content">
+                        <div class="journey-icon">🏆</div>
+                        <span class="date">2025</span>
+                        <h3>First Major Achievement</h3>
+                        <p>Developed AI-powered projects and won several awards for innovative solutions.</p>
+                        <div class="journey-tags">
+                            <span class="journey-tag">Projects</span>
+                            <span class="journey-tag">Awards</span>
+                            <span class="journey-tag">Recognition</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="awards" class="awards-section">
+            <div class="awards-container">
+                <h2>Achievements & Recognition</h2>
+                <p class="awards-subtitle">Milestones in AI, Machine Learning, and Data Science</p>
+                
+                <div class="awards-showcase">
+                    <div class="award-card" data-year="2024">
+                        <div class="award-content">
+                            <div class="award-year">2024</div>
+                            <div class="award-medal">🏆</div>
+                            <h3>ML Innovation Award</h3>
+                            <p class="award-org">AI Research Symposium</p>
+                            <p class="award-desc">Recognition for developing novel machine learning algorithms for real-time data processing</p>
+                            <div class="award-badge">
+                                <span class="badge-text">Machine Learning</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="award-card" data-year="2023">
+                        <div class="award-content">
+                            <div class="award-year">2023</div>
+                            <div class="award-medal">🤖</div>
+                            <h3>Best AI Project</h3>
+                            <p class="award-org">National Tech Summit</p>
+                            <p class="award-desc">First place for innovative AI solution in healthcare diagnostics</p>
+                            <div class="award-badge">
+                                <span class="badge-text">Artificial Intelligence</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="award-card" data-year="2023">
+                        <div class="award-content">
+                            <div class="award-year">2023</div>
+                            <div class="award-medal">📊</div>
+                            <h3>Data Science Excellence</h3>
+                            <p class="award-org">Analytics Conference</p>
+                            <p class="award-desc">Outstanding contribution in predictive analytics and data visualization</p>
+                            <div class="award-badge">
+                                <span class="badge-text">Data Science</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="award-card" data-year="2022">
+                        <div class="award-content">
+                            <div class="award-year">2022</div>
+                            <div class="award-medal">🎯</div>
+                            <h3>Research Recognition</h3>
+                            <p class="award-org">Deep Learning Workshop</p>
+                            <p class="award-desc">Special mention for neural network architecture optimization</p>
+                            <div class="award-badge">
+                                <span class="badge-text">Deep Learning</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="chat" class="chat-section">
+            <div class="chat-container">
+                <h2>Let's chat about your project</h2>
+                <p class="chat-subtitle">Have an idea? Let's bring it to life together.</p>
+                
+                <div class="chat-grid">
+                    <div class="chat-card">
+                        <h3>Quick Chat</h3>
+                        <p>Got a quick question? Drop me a message and I'll get back to you within 24 hours.</p>
+                        <a href="mailto:your.email@example.com" class="chat-button">Send Message</a>
+                    </div>
+                    
+                    <div class="chat-card">
+                        <h3>Schedule Call</h3>
+                        <p>Let's have a detailed discussion about your project and requirements.</p>
+                        <a href="https://wa.me/918887752006" class="chat-button">Book a Call</a>
+                    </div>
+                    
+                    <div class="chat-card">
+                        <h3>Download CV</h3>
+                        <p>Get a detailed look at my skills, experience, and achievements.</p>
+                        <a href="resume.pdf" class="chat-button">Download CV <i class="fas fa-download"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-left">
+                <h2 class="footer-name">ABHAY AGARWAL</h2>
+                <p class="footer-bio">Future-ready Data Scientist on a mission to build intelligent, human-centered systems using AI and ML.</p>
+                <div class="social-links">
+                    <a href="https://github.com/Abhay030405" class="social-link" target="_blank" aria-label="GitHub Profile">
+                        <i class="fab fa-github social-icon"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/abhay-agarwal-8563352b1/" class="social-link" target="_blank" aria-label="LinkedIn Profile">
+                        <i class="fab fa-linkedin-in social-icon"></i>
+                    </a>
+                    <a href="https://www.kaggle.com/abhayondata" class="social-link" target="_blank" aria-label="Kaggle Profile">
+                        <i class="fab fa-kaggle social-icon"></i>
+                    </a>
+                    <!-- <a href="/blank" class="social-link" target="_blank" aria-label="CodePen Profile">
+                        <i class="fab fa-codepen social-icon"></i>
+                    </a> -->
+                    <a href="mailto:officialabhay030405@gmail.com" class="social-link" aria-label="Email Me">
+                        <i class="fas fa-envelope social-icon"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-right">
+                <div class="footer-links">
+                    <h3>Navigation</h3>
+                    <a href="#work">Work</a>
+                    <a href="#awards">Awards</a>
+                    <a href="#story">Story</a>
+                </div>
+                <div class="footer-links">
+                    <h3>Connect</h3>
+                    <a href="#chat">Start a Project</a>
+                    <a href="mailto:officialabhay030405@gmail.com">Email Me</a>
+                    <a href="resume.pdf" target="_blank">Download CV </i></a>
+                    <a href="tel:+918887752006">+91 8887752006</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <p>Made with ❤️ by Abhay <br> Driven by data. Powered by intelligence. Inspired by innovation. <br> © 2025 All rights reserved. </p>
+        </div>
+    </footer>
+
+    <script>
+        // Disable inspect element
+        // document.addEventListener('keydown', function (e) {
+        // if (
+        //     e.key === 'F12' ||
+        //     (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) ||
+        //     (e.ctrlKey && e.key === 'U')
+        // )  {
+        // e.preventDefault();
+        // alert("Inspect is disabled 🚫");
+        // }
+        // });
+        // Immediately set initial state
+        document.body.style.background = '#0F2027';
+        
+        // Enhanced loading and transition handling
+        document.addEventListener('DOMContentLoaded', function() {
+            const loader = document.querySelector('.loader-wrapper');
+            const content = document.querySelector('.content-wrapper');
+            const transition = document.querySelector('.page-transition');
+            const shapes = document.querySelectorAll('.hero-shapes .shape');
+            const navbar = document.querySelector('.navbar');
+            
+            // Add loading class to body to prevent scrolling
+            document.body.classList.add('loading');
+            
+            // Force scroll to top
+            window.scrollTo(0, 0);
+            
+            // Initialize shapes
+            shapes.forEach(shape => {
+                shape.style.opacity = '0';
+                shape.style.transform = 'scale(0.5)';
+            });
+
+            // Make page visible now that initial states are set
+            document.documentElement.style.visibility = 'visible';
+            
+            // Simulate loading time (minimum 2 seconds)
+            setTimeout(() => {
+                // Start transition sequence
+                transition.classList.add('active');
+                
+                // Add exit animation class to loader
+                loader.classList.add('exit');
+                
+                setTimeout(() => {
+                    // Hide loader with enhanced animation
+                    loader.classList.add('loaded');
+                    
+                    // Show content with staggered animation
+                    setTimeout(() => {
+                        content.classList.add('revealed');
+                        navbar.style.transform = 'translateY(0)';
+                        navbar.style.opacity = '1';
+                        
+                        // Animate shapes with delay
+                        shapes.forEach((shape, index) => {
+                            setTimeout(() => {
+                                shape.style.opacity = '0.2';
+                                shape.style.transform = 'scale(1)';
+                            }, 400 * (index + 1));
+                        });
+                        
+                        // Remove transition overlay
+                        setTimeout(() => {
+                            transition.classList.remove('active');
+                            
+                            // Remove loading class from body after transition
+                            setTimeout(() => {
+                                document.body.classList.remove('loading');
+                                // Initialize sections after loading
+                                initializeSections();
+                            }, 100);
+                        }, 800);
+                    }, 600);
+                }, 400);
+            }, 2000);
+        });
+
+        // Initialize sections after loading
+        function initializeSections() {
+            // Reset scroll position for each section
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                section.style.opacity = '1';
+                section.style.transform = 'none';
+            });
+
+            // Initialize intersection observers for animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px'
+            };
+
+            const sectionObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('section-visible');
+                        sectionObserver.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                sectionObserver.observe(section);
+            });
+        }
+    </script>
+    <script src="script.js"></script>
+    <script src="charts.js"></script>
+</body>
+</html> 
