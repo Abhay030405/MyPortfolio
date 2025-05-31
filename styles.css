@@ -2094,7 +2094,7 @@ footer::before {
 .progress-bar {
     width: 0%;
     height: 100%;
-    background: linear-gradient(90deg, #3498DB, #2980B9);
+    background: linear-gradient(90deg, #3498DB, #2980B9) !important; 
     animation: progress 3s ease-in-out forwards;
 }
 
@@ -3105,5 +3105,278 @@ canvas {
 @media (max-width: 480px) {
     .hero-title {
         font-size: 2rem;
+    }
+}
+
+/* Skills Section */
+.skills-section {
+    padding: 8rem 2rem;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.skills-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.skills-title {
+    text-align: center;
+    font-size: 3rem;
+    color: #ffffff;
+    margin-bottom: 1rem;
+}
+
+.skills-title .highlight {
+    background: linear-gradient(120deg, #00ffff, #00bfff);  
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.skills-subtitle {
+    text-align: center;
+    color: #8892b0;
+    font-size: 1.1rem;
+    max-width: 800px;
+    margin: 0 auto 3rem;
+}
+
+.skill-level-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.level-indicator {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.dot.proficient {
+    background: #00ffff;
+}
+
+.dot.advanced {
+    background: #00ff95;
+}
+
+.level-text {
+    color: #8892b0;
+    font-size: 0.9rem;
+}
+
+.expertise-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+}
+
+.expertise-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 2rem;
+    backdrop-filter: blur(10px);
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.header-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: rgba(0, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-icon i {
+    font-size: 1.2rem;
+    color: #00ffff;
+}
+
+.card-header h3 {
+    color: #ffffff;
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.skills-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.skill-item {
+    width: 100%;
+}
+
+.skill-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.skill-name {
+    color: #8892b0;
+}
+
+.skill-percentage {
+    color: #00ffff;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    border-radius: 3px;
+    transition: width 1s ease-in-out;
+}
+
+.progress[data-color="orange"] { background: linear-gradient(90deg, #ff9f43, #ffa25f); }
+.progress[data-color="red"] { background: linear-gradient(90deg, #ff6b6b, #ff8585); }
+.progress[data-color="blue"] { background: linear-gradient(90deg, #00ffff, #00bfff); }
+.progress[data-color="pink"] { background: linear-gradient(90deg, #ff9a9e, #fad0c4); }
+.progress[data-color="cyan"] { background: linear-gradient(90deg, #00ffff, #00bfff); }
+.progress[data-color="green"] { background: linear-gradient(90deg, #00ff95, #00ffcc); }
+.progress[data-color="purple"] { background: linear-gradient(90deg, #a18cd1, #b8a6db); }
+
+/* Research Interests */
+.research-interests {
+    grid-column: 1 / -1;
+    margin-top: 4rem;
+}
+
+.research-interests h2 {
+    text-align: center;
+    color: #ffffff;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+}
+
+.interests-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.interest-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 2rem;
+    text-align: center;
+    transition: transform 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.interest-card:hover {
+    transform: translateY(-10px);
+}
+
+.interest-icon {
+    width: 60px;
+    height: 60px;
+    background: rgba(0, 255, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+}
+
+.interest-icon i {
+    font-size: 1.8rem;
+    color: #00ffff;
+}
+
+.interest-card h3 {
+    color: #ffffff;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.interest-card p {
+    color: #8892b0;
+}
+
+/* Achievement Metrics */
+.achievement-metrics {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-top: 4rem;
+}
+
+.metric-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 2rem;
+    text-align: center;
+    transition: transform 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.metric-card:hover {
+    transform: translateY(-10px);
+}
+
+.metric-number {
+    font-size: 3rem;
+    font-weight: 700;
+    background: linear-gradient(120deg, #00ffff, #00bfff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.5rem;
+}
+
+.metric-label {
+    color: #ffffff;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.metric-sublabel {
+    color: #8892b0;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+    .expertise-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .skills-title {
+        font-size: 2.5rem;
+    }
+    
+    .skill-level-indicators {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+    
+    .interests-grid {
+        grid-template-columns: 1fr;
     }
 }
