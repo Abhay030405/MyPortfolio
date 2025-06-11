@@ -96,25 +96,90 @@ window.addEventListener('scroll', () => {
     scrollProgress.style.width = `${progress}%`;
 });
 
+// Initialize project cards when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    const projectCards = document.querySelectorAll('.project-card');
+    projectCards.forEach(card => {
+        card.style.opacity = '1';
+        card.style.transform = 'none';
+    });
+});
+
+// Journey & Achievements Toggle
+const toggleButtons = document.querySelectorAll('.toggle-btn');
+const contentSections = document.querySelectorAll('.content-section');
+
+toggleButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        const targetSection = button.dataset.section;
+        
+        // Update button states
+        toggleButtons.forEach(btn => {
+            btn.classList.remove('active');
+        });
+        button.classList.add('active');
+        
+        // Update content sections
+        contentSections.forEach(section => {
+            if (section.classList.contains(targetSection + '-content')) {
+                section.classList.add('active');
+            } else {
+                section.classList.remove('active');
+            }
+        });
+    });
+});
+
+// Navigation buttons functionality
+const projectsGrid = document.querySelector('.projects-grid');
+const nextButton = document.querySelector('.next-button');
+const prevButton = document.querySelector('.prev-button');
+
+if (nextButton && prevButton && projectsGrid) {
+    nextButton.addEventListener('click', () => {
+        projectsGrid.scrollBy({
+            left: 400 + 32, // card width + gap
+            behavior: 'smooth'
+        });
+    });
+
+    prevButton.addEventListener('click', () => {
+        projectsGrid.scrollBy({
+            left: -(400 + 32), // card width + gap
+            behavior: 'smooth'
+        });
+    });
+
+    // Update button states
+    function updateNavigationButtons() {
+        const isAtStart = projectsGrid.scrollLeft <= 0;
+        const isAtEnd = projectsGrid.scrollLeft >= projectsGrid.scrollWidth - projectsGrid.clientWidth;
+        
+        prevButton.disabled = isAtStart;
+        nextButton.disabled = isAtEnd;
+        
+        prevButton.style.opacity = isAtStart ? '0.5' : '1';
+        nextButton.style.opacity = isAtEnd ? '0.5' : '1';
+    }
+
+    projectsGrid.addEventListener('scroll', updateNavigationButtons);
+    window.addEventListener('resize', updateNavigationButtons);
+    
+    // Initial button state
+    updateNavigationButtons();
+}
+
 // Project card hover effect
 const projectCards = document.querySelectorAll('.project-card');
 projectCards.forEach(card => {
-    card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        
-        const angleX = (y - centerY) / 30;
-        const angleY = (centerX - x) / 30;
-        
-        card.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg) scale3d(1.05, 1.05, 1.05)`;
+    card.addEventListener('mouseenter', () => {
+        card.style.transform = 'translateY(-5px)';
+        card.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.15)';
     });
     
     card.addEventListener('mouseleave', () => {
-        card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+        card.style.transform = 'none';
+        card.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
     });
 });
 
@@ -167,6 +232,17 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
+        
+        // Remove active state from all nav links
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.style.background = 'none';
+            link.querySelector('.nav-text').style.color = 'var(--text-dark)';
+        });
+        
+        // Add active state to clicked link
+        this.style.background = 'none';
+        this.querySelector('.nav-text').style.color = 'var(--text-dark)';
+        
         if (target) {
             target.scrollIntoView({
                 behavior: 'smooth',
@@ -240,12 +316,12 @@ class TextScramble {
 
 // Initialize text scramble effect with AI/ML phrases
 const phrases = [
-    'Training Neural Networks',
-    'Analyzing Big Data',
-    'Building AI Solutions',
     'Machine Learning Models',
-    'Deep Learning Research',
-    'Predictive Analytics'
+    'Algorithmic Trading Systems',
+    'Predictive Market Models',
+    'Quantitative Research',
+    'Time Series Modeling',
+    'High-Frequency Signals'
 ];
 
 // Update hero title animation
@@ -596,6 +672,71 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.model-metrics').forEach(metrics => {
         metricsObserver.observe(metrics);
     });
+
+    // Journey & Achievements Toggle
+    const journeyToggleButtons = document.querySelectorAll('.toggle-btn');
+    const journeyContentSections = document.querySelectorAll('.journey-content, .achievements-content');
+
+    journeyToggleButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const targetSection = button.dataset.section;
+            
+            // Update button states
+            journeyToggleButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            
+            // Update content sections
+            journeyContentSections.forEach(section => {
+                if (section.classList.contains(targetSection + '-content')) {
+                    section.classList.add('active');
+                } else {
+                    section.classList.remove('active');
+                }
+            });
+        });
+    });
+
+    // Expertise Section Toggle
+    const expertiseToggleButtons = document.querySelectorAll('.expertise-toggle-btn');
+    const expertiseContentSections = document.querySelectorAll('.expertise-section .content-section');
+
+    expertiseToggleButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const targetSection = button.getAttribute('data-section');
+            
+            // Update button states
+            expertiseToggleButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            
+            // Update content sections
+            expertiseContentSections.forEach(section => {
+                if (section.id === targetSection) {
+                    // First set display to block and wait for next frame
+                    section.style.display = 'block';
+                    section.style.opacity = '0';
+                    section.style.transform = 'translateY(20px)';
+                    section.classList.add('active');
+                    
+                    // Then animate in
+                    requestAnimationFrame(() => {
+                        requestAnimationFrame(() => {
+                            section.style.opacity = '1';
+                            section.style.transform = 'translateY(0)';
+                        });
+                    });
+                } else {
+                    section.classList.remove('active');
+                    section.style.opacity = '0';
+                    section.style.transform = 'translateY(20px)';
+                    
+                    // Wait for fade out before hiding
+                    setTimeout(() => {
+                        section.style.display = 'none';
+                    }, 300);
+                }
+            });
+        });
+    });
 });
 
 // Initialize skills section animations
@@ -677,4 +818,46 @@ function initializeHoverEffects() {
 document.addEventListener('DOMContentLoaded', () => {
     initializeSkills();
     initializeHoverEffects();
-}); 
+});
+
+// Prevent text selection on navigation links
+document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('mousedown', (e) => {
+        e.preventDefault();
+    });
+    
+    link.addEventListener('selectstart', (e) => {
+        e.preventDefault();
+    });
+});
+
+// Update active navigation link based on scroll position
+function updateActiveNavLink() {
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    let currentSectionId = '';
+    
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        if (window.scrollY >= sectionTop - 100) {
+            currentSectionId = section.getAttribute('id');
+        }
+    });
+    
+    navLinks.forEach(link => {
+        // Remove any unwanted text decorations
+        link.style.textDecoration = 'none';
+        link.querySelector('.nav-text').style.textDecoration = 'none';
+        
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${currentSectionId}`) {
+            link.classList.add('active');
+        }
+    });
+}
+
+// Add scroll event listener
+window.addEventListener('scroll', updateActiveNavLink);
+window.addEventListener('load', updateActiveNavLink); 

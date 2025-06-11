@@ -69,41 +69,107 @@ function initializeCharts() {
     }
 
     // Sentiment Distribution Chart
-    const sentimentCtx = document.getElementById('sentimentChart');
-    if (sentimentCtx) {
-        new Chart(sentimentCtx.getContext('2d'), {
-            type: 'doughnut',
-            data: {
-                labels: ['Positive', 'Neutral', 'Negative'],
-                datasets: [{
-                    data: [45, 35, 20],
-                    backgroundColor: [
-                        'rgba(46, 204, 113, 0.8)',
-                        'rgba(52, 152, 219, 0.8)',
-                        'rgba(231, 76, 60, 0.8)'
-                    ],
-                    borderColor: [
-                        'rgba(46, 204, 113, 1)',
-                        'rgba(52, 152, 219, 1)',
-                        'rgba(231, 76, 60, 1)'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        position: 'bottom',
-                        labels: {
-                            color: 'rgba(255, 255, 255, 0.8)'
-                        }
-                    }
+    const sentimentCtx = document.getElementById('sentimentChart').getContext('2d');
+    const sentimentChart = new Chart(sentimentCtx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Positive', 'Negative', 'Neutral'],
+            datasets: [{
+                data: [45, 25, 30],
+                backgroundColor: [
+                    'rgba(52, 152, 219, 0.8)',
+                    'rgba(231, 76, 60, 0.8)',
+                    'rgba(241, 196, 15, 0.8)'
+                ],
+                borderColor: [
+                    'rgba(52, 152, 219, 1)',
+                    'rgba(231, 76, 60, 1)',
+                    'rgba(241, 196, 15, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'bottom'
                 }
             }
-        });
-    }
+        }
+    });
+
+    // Recommendation System Chart
+    const recommendationCtx = document.getElementById('recommendationChart').getContext('2d');
+    const recommendationChart = new Chart(recommendationCtx, {
+        type: 'line',
+        data: {
+            labels: ['Day 1', 'Day 5', 'Day 10', 'Day 15', 'Day 20'],
+            datasets: [{
+                label: 'Precision@K',
+                data: [0.65, 0.75, 0.82, 0.87, 0.91],
+                borderColor: 'rgba(52, 152, 219, 1)',
+                backgroundColor: 'rgba(52, 152, 219, 0.1)',
+                fill: true,
+                tension: 0.4
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: 1
+                }
+            },
+            plugins: {
+                legend: {
+                    position: 'bottom'
+                }
+            }
+        }
+    });
+
+    // Object Detection Performance Chart
+    const detectionCtx = document.getElementById('detectionChart').getContext('2d');
+    const detectionChart = new Chart(detectionCtx, {
+        type: 'bar',
+        data: {
+            labels: ['CPU', 'GPU', 'TensorRT'],
+            datasets: [{
+                label: 'FPS',
+                data: [8, 45, 85],
+                backgroundColor: [
+                    'rgba(52, 152, 219, 0.8)',
+                    'rgba(46, 204, 113, 0.8)',
+                    'rgba(155, 89, 182, 0.8)'
+                ],
+                borderColor: [
+                    'rgba(52, 152, 219, 1)',
+                    'rgba(46, 204, 113, 1)',
+                    'rgba(155, 89, 182, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Frames Per Second'
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    position: 'bottom'
+                }
+            }
+        }
+    });
 }
 
 // Initialize charts when DOM is loaded and after any transitions
